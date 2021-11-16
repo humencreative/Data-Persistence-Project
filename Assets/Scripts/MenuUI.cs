@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -29,5 +30,25 @@ public class MenuUI : MonoBehaviour
     public void setUsername()
     {
         GameManager.Instance.username = username.text;
+    }
+
+    public void Menu()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    public void HighScore()
+    {
+        GameManager.Instance.LoadScore();
+        SceneManager.LoadScene(2);
+    }
+
+    public void Exit()
+    {
+        #if UNITY_EDITOR
+            EditorApplication.ExitPlaymode();
+        #else
+            Application.Quit();
+        #endif
     }
 }
