@@ -24,7 +24,7 @@ public class MainManager : MonoBehaviour
     {
         const float step = 0.6f;
         int perLine = Mathf.FloorToInt(4.0f / step);
-        
+        UpdateLocalScore();
         int[] pointCountArray = new [] {1,1,2,2,5,5};
         for (int i = 0; i < LineCount; ++i)
         {
@@ -65,7 +65,12 @@ public class MainManager : MonoBehaviour
     void AddPoint(int point)
     {
         m_Points += point;
-        ScoreText.text = $"Score : {m_Points}";
+        UpdateLocalScore();
+    }
+
+    void UpdateLocalScore()
+    {
+        ScoreText.text = $"{GameManager.Instance.username} score : {m_Points}";
     }
 
     public void GameOver()
